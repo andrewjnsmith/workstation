@@ -13,6 +13,9 @@ end
 
 brew_install "php53", {:brew_args => "--with-mysql"}
 
+brew_install "php53-oauth"
+brew_install "php53-mcrypt"
+
 execute "Load php53 module into apache" do
   command "brew info php53 | grep LoadModule | sed 's/^[ \t]*//' >> /etc/apache2/mods/php53.load && sudo apachectl restart"
   not_if { system(" test -f /etc/apache2/mods/php53.load") }

@@ -1,0 +1,15 @@
+<VirtualHost *:80>
+  DocumentRoot <%= node["pmk_app"]["document_root"] %>/public
+  ServerName <%= node["pmk_app"]["dns_name"] %>
+  <Directory <%= node["pmk_app"]["document_root"] %>/public/>
+    Options FollowSymlinks
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+  </Directory>
+
+  LogLevel warn
+  php_value error_log <%= node["pmk_app"]["document_root"] %>/logs/php.log
+  CustomLog <%= node["pmk_app"]["document_root"] %>/logs/apache_access.log combined
+  ErrorLog <%= node["pmk_app"]["document_root"] %>/logs/apache_error.log
+</VirtualHost>

@@ -1,4 +1,4 @@
-if node["name_machine"] then
+if node["name_machine"] and node["name_machine"] != "%MACHINE_NAME%" then
  ["scutil --set ComputerName #{node["name_machine"]}",
      "scutil --set LocalHostName #{node["name_machine"]}",
      "scutil --set HostName #{node["name_machine"]}",

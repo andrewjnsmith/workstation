@@ -42,7 +42,7 @@ recipes:
 - pricemaker::composer
 
 node_attributes:
-  name_machine: gnat
+  name_machine: %MACHINE_NAME%
   bash_it:
     theme: standard
     custom_plugins:

@@ -1,6 +1,6 @@
-[submodule "dmg"]
-	path = dmg
+[submodule "cookbooks/dmg"]
+	path = cookbooks/dmg
 	url = https://github.com/opscode-cookbooks/dmg.git
-[submodule "pivotal_workstation"]
-	path = pivotal_workstation
+[submodule "cookbooks/pivotal_workstation"]
+	path = cookbooks/pivotal_workstation
 	url = https://github.com/pivotal/pivotal_workstation.git

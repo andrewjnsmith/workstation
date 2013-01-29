@@ -16,6 +16,16 @@ brew_install "php53", {:brew_args => "--with-mysql"}
 brew_install "php53-oauth"
 brew_install "php53-mcrypt"
 
+execute "Move native php binary out of the way" do
+  command "mv /usr/bin/php /usr/bin/php-native"
+  only_if { system("test -f /usr/bin/php") }
+end
+
+execute "Symlink php53 binary to /usr/bin/php" do
+  command "ln -s $(brew --prefix josegonzalez/php/php53)/bin/php /usr/bin/php"
+  not_if { system("test -L /usr/bin/php")}
+end
+
 execute "Load php53 module into apache" do
   command "brew info php53 | grep LoadModule | sed 's/^[ \t]*//' >> /etc/apache2/mods/php53.load && sudo apachectl restart"
   not_if { system(" test -f /etc/apache2/mods/php53.load") }

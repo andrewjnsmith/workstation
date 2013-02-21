@@ -8,7 +8,7 @@ end
 
 template "/usr/local/etc/supervisor/supervisord.conf" do
   source "supervisord.conf.erb"
-  user "root"
+  user WS_USER
 end
 
 execute "install supervisor" do
@@ -34,7 +34,7 @@ end
 
 template "/usr/local/etc/supervisor/conf.d/workers.conf" do
   source "workers.conf.erb"
-  user "root"
+  user WS_USER
 end
 
 execute "supervisorctl restart all"

@@ -18,7 +18,7 @@ brew_install "php53-mcrypt"
 
 execute "Move native php binary out of the way" do
   command "mv /usr/bin/php /usr/bin/php-native"
-  only_if { system("test -f /usr/bin/php") }
+  not_if { system("test -L /usr/bin/php")}
 end
 
 execute "Symlink php53 binary to /usr/bin/php" do

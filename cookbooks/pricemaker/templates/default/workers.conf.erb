@@ -1,0 +1,62 @@
+[program:process_event]
+command=<%= node["pmk_app"]["document_root"] %>/bin/phake workers:process-event
+process_name=event-%(process_num)d
+numprocs=1
+startsecs=0
+directory=<%= node["pmk_app"]["document_root"] %>/bin
+autostart=true
+autorestart=true
+user=<%= WS_USER %>
+
+[program:process_queue]
+command=<%= node["pmk_app"]["document_root"] %>/bin/phake workers:process-queue
+process_name=queue-%(process_num)d
+numprocs=1
+startsecs=0
+directory=<%= node["pmk_app"]["document_root"] %>/bin
+autostart=true
+autorestart=true
+user=<%= WS_USER %>
+
+[program:auction_pending_reminder]
+command=<%= node["pmk_app"]["document_root"] %>/bin/phake workers:auction-pending-reminder
+process_name=pending-%(process_num)d
+numprocs=1
+startsecs=0
+directory=<%= node["pmk_app"]["document_root"] %>/bin
+autostart=true
+autorestart=true
+user=<%= WS_USER %>
+
+[program:close_open_auctions]
+command=<%= node["pmk_app"]["document_root"] %>/bin/phake workers:close-open-auctions
+process_name=close-%(process_num)d
+numprocs=1
+startsecs=0
+directory=<%= node["pmk_app"]["document_root"] %>/bin
+autostart=true
+autorestart=true
+user=<%= WS_USER %>
+
+[program:expire_pending_auctions]
+command=<%= node["pmk_app"]["document_root"] %>/bin/phake workers:expire-pending-auctions
+process_name=expire-%(process_num)d
+numprocs=1
+startsecs=0
+directory=<%= node["pmk_app"]["document_root"] %>/bin
+autostart=true
+autorestart=true
+user=<%= WS_USER %>
+
+[program:rating_reminder]
+command=<%= node["pmk_app"]["document_root"] %>/bin/phake workers:rating-reminder
+process_name=rating-%(process_num)d
+numprocs=1
+startsecs=0
+directory=<%= node["pmk_app"]["document_root"] %>/bin
+autostart=true
+autorestart=true
+user=<%= WS_USER %>
+
+[group:pmk_workers]
+programs=process_event,process_queue,auction_pending_reminder,close_open_auctions,expire_pending_auctions,rating_reminder  ; each refers to 'x' in [program:x] definitions

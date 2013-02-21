@@ -40,12 +40,12 @@ template "/Library/LaunchDaemons/nz.co.pricemaker.tick.plist" do
   mode "0644"
 end
 
-execute "unload launchd script for supervisord if it exists" do
+execute "unload launchd script for ticker if it exists" do
   command "sudo launchctl unload -w /Library/LaunchDaemons/nz.co.pricemaker.tick.plist"
   only_if { system( "sudo launchctl list | grep nz.co.pricemaker.tick > /dev/null 2>&1" ) }
 end
 
-execute "load launchd script for supervisord" do
+execute "load launchd script for ticker" do
   command "sudo launchctl load -w /Library/LaunchDaemons/nz.co.pricemaker.tick.plist"
   not_if { system( "sudo launchctl list | grep nz.co.pricemaker.tick > /dev/null 2>&1" ) }
 end

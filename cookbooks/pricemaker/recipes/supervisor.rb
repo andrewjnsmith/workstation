@@ -1,11 +1,6 @@
 
 include_recipe "pricemaker::app"
 
-execute "install supervisor" do
-	command "easy_install supervisor"
-	not_if { system( "which supervisorctl > /dev/null 2>&1" ) }
-end
-
 directory "/usr/local/etc/supervisor/conf.d" do
   action :create
   recursive true
@@ -14,6 +9,11 @@ end
 template "/usr/local/etc/supervisor/supervisord.conf" do
   source "supervisord.conf.erb"
   user "root"
+end
+
+execute "install supervisor" do
+	command "easy_install supervisor"
+	not_if { system( "which supervisorctl > /dev/null 2>&1" ) }
 end
 
 cookbook_file "/Library/LaunchDaemons/com.agendaless.supervisord.plist" do

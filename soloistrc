@@ -41,6 +41,7 @@ recipes:
 - pricemaker::spotify
 - pricemaker::composer
 - pricemaker::app
+- pricemaker::supervisor
 
 node_attributes:
   name_machine: %MACHINE_NAME%

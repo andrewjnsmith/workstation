@@ -2,6 +2,8 @@
 
 To install these scripts you'll need Xcode, the `soloist` gem, the [`pivotal_workstation` scripts](http://github.com/pivotal/pivotal_workstation) and the [`dmg` scripts](http://github.com/opscode-cookbooks/dmg).
 
+Install Xcode *(not just the command line tools, they dun wurk)*
+
 Install soloist via
 
 ```bash
